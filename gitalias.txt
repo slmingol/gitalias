@@ -101,7 +101,13 @@
   # add just the files that are updated.
   au = add --update
 
-  ### branch aliases ###
+  ### branch ###
+
+  # br
+  br = branch
+
+  # branch - edit the description
+  be = branch --edit-description
 
   # branch and only list branches whose tips are reachable from the specified commit (HEAD if not specified).
   bm = branch --merged
@@ -413,7 +419,16 @@
   # remote prune - deletes all stale remote-tracking branches under <name>.
   rrp = remote prune
 
-  ### revert aliases ###
+  ### revert ###
+  incoming = !git remote update --prune; git log ..@{upstream}
+  outgoing = log @{upstream}..
+
+  # https://stackoverflow.com/questions/48820631/git-remote-prune-origin-does-not-delete-the-local-branch-even-if-its-upstream-re
+  rpo = remote prune origin
+  rpod = remote prune origin --dry-run
+
+  # Push to all remotes
+  push-to-all-remotes = !git remote | xargs -I% -n1 git push %
 
   # revert - undo the changes from some existing commits
   rv = revert
@@ -1154,6 +1169,9 @@
   track = "!f(){ branch=$(git rev-parse --abbrev-ref HEAD); cmd=\"git branch $branch -u ${1:-origin}/${2:-$branch}\"; echo $cmd; $cmd; }; f"
   untrack = "!f(){ branch=$(git rev-parse --abbrev-ref HEAD); cmd=\"git branch --unset-upstream ${1:-$branch}\"; echo $cmd; $cmd; }; f"
 
+  prom  = pull --rebase origin master
+  prodp = pull --rebase origin develop
+
   # Track all remote branches that aren't already being tracked;
   # this is a bit hacky because of the parsing, and we welcome
   # better code that works using more-specific git commands.
@@ -1665,6 +1683,70 @@
     fi; \
   };f"
 
+  ### PULL & PUSH ###
+
+  ##
+  # Update the current topic branch by pulling changes.
+  #
+  # Example:
+  #
+  #     git topic-pull
+  #
+  # This implementatation does these:
+  #
+  #   1. Pull the topic branch from the origin.
+  #
+  # If you use any kind of testing framework, or test driven development,
+  # then it can be wise to test your topic immediately after running this,
+  # to ensure that any available updates are successfully integrated.
+  #
+  # Customize this alias as you like for your own workflow.
+  #
+  #   * E.g. some teams prefer to use `pull --rebase`.
+  ##
+
+  topic-pull = "!f(){ \
+    git pull; \
+  };f"
+
+  topic-pull-rebase = "!f(){ \
+    topic_branch=$(git branch-name); \
+    base_branch=$(git topic-base-branch-name); \
+    git checkout \"$base_branch\"; git pull; \
+    git checkout \"$topic_branch\"; git rebase \"$base_branch\"; \
+  };f"
+
+  ##
+  # Update the current topic branch by pushing changes.
+  #
+  # Example:
+  #
+  #     git topic-push
+  #
+  # This implementatation does these:
+  #
+  #   1. Push the topic branch to the origin.
+  #   2. Set the upstream tracking.
+  #
+  # Customize this for your own workflow preferences.
+  #
+  # If you use a sharing site such a GitHub, and use typical settings,
+  # then this implementation makes your branch visible to collaborators.
+  #
+  # Many teams share branches before they are fully ready, to help
+  # the team provide feedback on the work-in-progress.
+  #
+  # Customize this alias as you like for your own workflow.
+  ##
+
+  topic-push = "!f(){ \
+    topic_branch=$(git branch-name); \
+    git push --set-upstream origin \"$topic_branch\"; \
+  };f"
+
+  ### MANAGE TOPIC BRANCES ###
+
+  ##
   # Update the current topic branch by synchronizing changes.
   #
   # Example:
@@ -1709,6 +1791,7 @@
   #   2. Move the remote branch by pushing to origin.
   #
   # Customize this alias as you like for your own workflow.
+  ##
 
   topic-move = "!f(){ \
     new_branch=\"$1\"; \
