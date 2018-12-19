@@ -46,6 +46,9 @@
 
   ### branch ###
 
+  # br
+  br = branch
+
   # branch - edit the description
   be = branch --edit-description
 
@@ -239,6 +242,10 @@
 
   incoming = !git remote update --prune; git log ..@{upstream}
   outgoing = log @{upstream}..
+
+  # https://stackoverflow.com/questions/48820631/git-remote-prune-origin-does-not-delete-the-local-branch-even-if-its-upstream-re
+  rpo = remote prune origin
+  rpod = remote prune origin --dry-run
 
   # Push to all remotes
   push-to-all-remotes = !git remote | xargs -I% -n1 git push %
@@ -523,6 +530,8 @@
   push1 = "!git push origin $(git branch-name)"
   pull1 = "!git pull origin $(git branch-name)"
 
+  prom  = pull --rebase origin master
+  prodp = pull --rebase origin develop
 
   ##
   # Reset & Undo
@@ -1035,7 +1044,7 @@
   };f"
 
   ### MANAGE TOPIC BRANCES ###
-  
+
   ##
   # Update the current topic branch by synchronizing changes.
   #
@@ -1070,7 +1079,7 @@
   #
   # Customize this alias as you like for your own workflow.
   ##
-  
+
   topic-move = "!f(){ \
     new_branch=\"$1\"; \
     old_branch=$(git branch-name); \
