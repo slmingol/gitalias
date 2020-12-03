@@ -41,6 +41,7 @@ Edit your file `.gitconfig` and include `gitalias.txt` such as:
 
 Alternative: If are using an older version of git that does not have the "include" capability, or if you prefer more control, then you can simply view the file `gitalias.txt` and copy/paste anything you like into your own `.gitconfig` file.
 
+Or you can use the provided `mk_gitconfigs.sh` script which will populate your `$HOME` with files that'll setup `git` to utilize `gitalias.txt`.
 
 ## Examples
 
