@@ -41,7 +41,11 @@ You can use GitAlias various ways:
 
 You can follow us on GitHub:
 
+<<<<<<< HEAD
   * GitAlias account: [https://github.com/gitalias](https://github.com/gitalias)
+=======
+Or you can use the provided `mk_gitconfigs.sh` script which will populate your `$HOME` with files that'll setup `git` to utilize `gitalias.txt`.
+>>>>>>> 84df6e0 (Updates README)
 
   * GitAlias repository: [https://github.com/gitalias/gitalias](https://github.com/gitalias/gitalias)
 
