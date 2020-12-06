@@ -18,16 +18,17 @@ cat << EOF > ~/.gitconfig
 [includeIf "gitdir:projects/"]
     path = .gitconfig-home
 
+[includeIf "gitdir:.bash_profile.d/"]
+    path = .gitconfig-home
+
 [includeIf "gitdir:bandwidth/"]
     path = .gitconfig-work
 EOF
 
-cat << EOF > ~/.gitconfig-home
-[user]
-  email = github@jake8us.org
-EOF
+# home
+git config --file=$HOME/.gitconfig-home --replace-all user.email github@jake8us.org
+git config --file=$HOME/.gitconfig-home --replace-all user.name slmingol
 
-cat << EOF > ~/.gitconfig-work
-[user]
-  email = smingolelli@bandwidth.com
-EOF
+# work
+git config --file=$HOME/.gitconfig-work --replace-all user.email smingolelli@bandwidth.com
+git config --file=$HOME/.gitconfig-work --replace-all user.name slmingol
