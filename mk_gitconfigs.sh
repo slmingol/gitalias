@@ -23,6 +23,9 @@ cat << EOF > ~/.gitconfig
 
 [includeIf "gitdir:bandwidth/"]
     path = .gitconfig-work
+
+[pull]
+     ff = only
 EOF
 
 # home
