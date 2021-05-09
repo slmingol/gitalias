@@ -104,6 +104,9 @@
   # add just the files that are updated.
   au = add --update
 
+  # add all & commit
+  ac = !"git add -A && git commit -m"
+
   ### branch ###
 
   # br
