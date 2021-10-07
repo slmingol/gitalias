@@ -1073,6 +1073,9 @@
   # Delete all remote branches that have been merged into the remote master branch.
   master-cleanse-remote = !"git branch --remotes --merged origin/master | sed 's# *origin/##' | grep -v '^master$' xargs -I% git push origin :% 2>&1 | grep --colour=never 'deleted'"
 
+  # Delete all tracking branches that have been merged upstream
+  purge-merged = !"git bm | grep -vE 'main|master|\\*' | xargs -n 1 git branch -D"
+
   # Publish the current branch by pushing it to the remote "origin",
   # and setting the current branch to track the upstream branch.
   publish = !"git push --set-upstream origin $(git branch-name)"
