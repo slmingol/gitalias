@@ -1459,6 +1459,9 @@
 
   ### publish & unpublish ###
 
+  # Delete all tracking branches that have been merged upstream
+  purge-merged = !"git bm | grep -vE 'main|master|\\*' | xargs -n 1 git branch -D"
+
   # Publish the current branch by pushing it to the remote "origin",
   # and setting the current branch to track the upstream branch.
   publish = !"git push --set-upstream origin $(git current-branch)"
