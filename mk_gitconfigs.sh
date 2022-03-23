@@ -30,8 +30,12 @@ EOF
 
 # home
 git config --file=$HOME/.gitconfig-home --replace-all user.email github@jake8us.org
-git config --file=$HOME/.gitconfig-home --replace-all user.name slmingol
+#git config --file=$HOME/.gitconfig-home --replace-all user.name slmingol
+git config --file=$HOME/.gitconfig-home --replace-all user.signingkey 8BEE22A263318A31
+git config --file=$HOME/.gitconfig-home --replace-all user.name 'Sam Mingo'
 
 # work
 git config --file=$HOME/.gitconfig-work --replace-all user.email smingolelli@bandwidth.com
-git config --file=$HOME/.gitconfig-work --replace-all user.name slmingol
+#git config --file=$HOME/.gitconfig-work --replace-all user.name slmingol
+git config --file=$HOME/.gitconfig-work --replace-all user.signingkey 8BEE22A263318A31
+git config --file=$HOME/.gitconfig-work --replace-all user.name 'Sam Mingo'
