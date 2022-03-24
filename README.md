@@ -36,9 +36,8 @@ You can use GitAlias various ways:
 
   * Customize the aliases as you wish: [customize guide](doc/customize/index.md).
 
-
-## SLM Notes
 **NOTE:** You can use the provided `mk_gitconfigs.sh` script which will populate your `$HOME` with files that'll setup `git` to utilize `gitalias.txt`.
+
 
 ## Follow us
 
