@@ -340,7 +340,6 @@
   pron = pull --rebase origin main
 
   # prp - Pull with rebase preserve of merge commits
-  # pp - pull with rebase preserve of merge commits
   #
   # See https://stackoverflow.com/questions/21364636/git-pull-rebase-preserve-merges
   #
