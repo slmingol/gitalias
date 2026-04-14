@@ -15,27 +15,26 @@ cat << EOF > ~/.gitconfig
 
 # select appropriate gitconfig based on path/dir used
 #
+[includeIf "gitdir:/Users/smingolelli/dev/bandwidth/"]
+    path = .gitconfig-work
+
 [includeIf "gitdir:projects/"]
     path = .gitconfig-home
 
 [includeIf "gitdir:.bash_profile.d/"]
     path = .gitconfig-home
 
-[includeIf "gitdir:bandwidth/"]
-    path = .gitconfig-work
-
 [pull]
      ff = only
+[init]
+        defaultBranch = main
 EOF
 
 # home
-git config --file=$HOME/.gitconfig-home --replace-all user.email github@jake8us.org
-#git config --file=$HOME/.gitconfig-home --replace-all user.name slmingol
-git config --file=$HOME/.gitconfig-home --replace-all user.signingkey 8BEE22A263318A31
-git config --file=$HOME/.gitconfig-home --replace-all user.name 'Sam Mingo'
+git config --file=$HOME/.gitconfig-home --replace-all user.email slmingol@users.noreply.github.com
+git config --file=$HOME/.gitconfig-home --replace-all user.name slmingol
 
 # work
 git config --file=$HOME/.gitconfig-work --replace-all user.email smingolelli@bandwidth.com
-#git config --file=$HOME/.gitconfig-work --replace-all user.name slmingol
 git config --file=$HOME/.gitconfig-work --replace-all user.signingkey 8BEE22A263318A31
-git config --file=$HOME/.gitconfig-work --replace-all user.name 'Sam Mingo'
+git config --file=$HOME/.gitconfig-work --replace-all user.name slmingol
